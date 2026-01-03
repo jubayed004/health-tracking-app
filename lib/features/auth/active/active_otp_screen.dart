@@ -1,8 +1,15 @@
-/*
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:health_tracker_app/core/router/route_path.dart';
+import 'package:health_tracker_app/core/router/routes.dart';
+import 'package:health_tracker_app/share/widgets/button/circular_arrow_button.dart';
+import 'package:health_tracker_app/share/widgets/button/custom_button.dart';
+import 'package:health_tracker_app/share/widgets/text_field/otp_text_field.dart';
+import 'package:health_tracker_app/utils/app_strings/app_strings.dart';
+import 'package:health_tracker_app/utils/color/app_colors.dart';
+import 'package:health_tracker_app/utils/extension/base_extension.dart';
+import 'package:pinput/pinput.dart';
 
 class ActiveOtpScreen extends StatefulWidget {
   const ActiveOtpScreen({super.key});
@@ -12,9 +19,7 @@ class ActiveOtpScreen extends StatefulWidget {
 }
 
 class _ActiveOtpScreenState extends State<ActiveOtpScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController verifyOtp = TextEditingController();
-  final AuthController _auth = Get.find<AuthController>();
+  final verifyOtp = TextEditingController();
 
   @override
   void dispose() {
@@ -24,108 +29,79 @@ class _ActiveOtpScreenState extends State<ActiveOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        centerTitle: true,
-        title: Text(
-          AppStrings.ntsamaela.tr,
-          style: context.headlineSmall.copyWith(color: AppColors.primaryColor),
-        ),
-      ),
+      backgroundColor: AppColors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Gap(20.h),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Back Button
+              CircularArrowButton(onTap: () => AppRouter.route.pop()),
+              const Gap(32),
 
-                /// ---------- MAIN TITLE ----------
-                Text(
-                  AppStrings.verifyYourAccount.tr,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 20.sp,
-                    color: isDarkMode
-                        ? AppColors.white
-                        : AppColors.blackMainTextColor,
-                  ),
+              // Title
+              Text(
+                AppStrings.enterYour6DigitCode.tr,
+                style: context.headlineMedium.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.blackMainTextColor,
                 ),
-                Gap(12.h),
+              ),
+              const Gap(8),
 
-                /// ---------- SUBTITLE ----------
-                Text(
-                  AppStrings.verifyYourAccountTitle.tr,
-                  textAlign: TextAlign.center,
-                  style: context.bodyMedium.copyWith(
-                    color: isDarkMode
-                        ? Colors.white
-                        : AppColors.grayTextSecondaryColor,
-                    fontSize: 14.sp,
-                  ),
+              // Subtitle
+              Text(
+                AppStrings.enterOtpSubtitle.tr,
+                style: context.bodyMedium.copyWith(
+                  color: AppColors.grayTextSecondaryColor,
                 ),
-                Gap(28.h),
-                Assets.icons.otpicon.svg(),
+              ),
+              const Gap(32),
 
-                Gap(32.h),
+              /// ---------- OTP INPUT ----------
+              Align(
+                alignment: Alignment.center,
+                child: OtpTextField(controller: verifyOtp),
+              ),
 
-                /// ---------- OTP INPUT ----------
-                Align(
-                  alignment: Alignment.center,
-                  child: OtpTextField(controller: verifyOtp),
-                ),
+              const Gap(32),
 
-                Gap(28.h),
+              // Continue Button
+              CustomButton(
+                text: AppStrings.continueText.tr,
+                onTap: () {
+                  AppRouter.route.pushNamed(RoutePath.chooseGenderScreen);
+                },
+              ),
+              const Gap(24),
 
-                /// ---------- CONFIRM BUTTON ----------
-                CustomButton(
-                  text: AppStrings.verifyCode.tr,
-                  onTap: () {
-                    // ignore: unrelated_type_equality_checks
-                    CommonController.to.isSeller == true
-                        ? AppRouter.route.pushNamed(
-                            RoutePath.commuterRegistrationScreen,
-                          )
-                        : AppRouter.route.pushNamed(
-                            RoutePath.parcelOwnerNavScreen,
-                          );
-                  },
-                ),
-                Gap(28.h),
-
-                /// ---------- DON'T GET CODE TEXT ----------
-                Text(AppStrings.didGetACode.tr, style: context.titleMedium),
-                Gap(8.h),
-
-                ///  ---------- RESEND WITH TIMER UI ----------
-                Obx(
-                  () => _auth.isResendEnabled.value
-                      ? TextButton(
-                          onPressed: () {
-                            _auth.resendCode();
-                          },
-                          child: Text(
-                            AppStrings.resendCode.tr,
-                            style: context.titleSmall.copyWith(
-                              color: AppColors.greenTextColor,
-                            ),
-                          ),
-                        )
-                      : Text(
-                          "Resend code in 00:${_auth.start.value.toString().padLeft(2, '0')}s",
-                          style: context.titleSmall,
+              // Resend OTP
+              Center(
+                child: RichText(
+                  text: TextSpan(
+                    text: "${AppStrings.haventReceivedOtp.tr} ",
+                    style: context.bodyMedium.copyWith(
+                      color: AppColors.blackMainTextColor,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: AppStrings.resendOtp.tr,
+                        style: context.bodyMedium.copyWith(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.w600,
                         ),
+                        // Recognizer can be added here
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
-*/

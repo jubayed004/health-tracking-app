@@ -31,4 +31,7 @@ extension ContextExtensions on BuildContext {
   // ----------------- BUTTON STYLE -----------------
   ButtonStyle get buttonStyle =>
       Theme.of(this).elevatedButtonTheme.style ?? ElevatedButton.styleFrom();
+
+  ButtonStyle get outlinedButtonStyle =>
+      Theme.of(this).outlinedButtonTheme.style ?? OutlinedButton.styleFrom();
 }

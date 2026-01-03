@@ -1,19 +1,14 @@
-/*
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:percel_delivery_app/core/custom_assets/assets.gen.dart';
-import 'package:percel_delivery_app/core/router/route_path.dart';
-import 'package:percel_delivery_app/core/router/routes.dart';
-import 'package:percel_delivery_app/helper/validator/text_field_validator.dart';
-import 'package:percel_delivery_app/share/widgets/align/custom_align_text.dart';
-import 'package:percel_delivery_app/share/widgets/button/custom_button.dart';
-import 'package:percel_delivery_app/share/widgets/text_field/custom_text_field.dart';
-import 'package:percel_delivery_app/utils/app_strings/app_strings.dart';
-import 'package:percel_delivery_app/utils/color/app_colors.dart';
-import 'package:percel_delivery_app/utils/common_controller/common_controller.dart';
+import 'package:health_tracker_app/core/custom_assets/assets.gen.dart';
+import 'package:health_tracker_app/core/router/route_path.dart';
+import 'package:health_tracker_app/core/router/routes.dart';
+import 'package:health_tracker_app/share/widgets/button/custom_button.dart';
+import 'package:health_tracker_app/share/widgets/text_field/custom_text_field.dart';
+import 'package:health_tracker_app/utils/app_strings/app_strings.dart';
+import 'package:health_tracker_app/utils/color/app_colors.dart';
+import 'package:health_tracker_app/utils/extension/base_extension.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,190 +18,159 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        centerTitle: true,
-        title: Text(
-          AppStrings.ntsamaela.tr,
-          style: Theme.of(
-            context,
-          ).textTheme.headlineSmall?.copyWith(color: AppColors.primaryColor),
-        ),
-      ),
+      backgroundColor: AppColors.primaryColor,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text(
-                    textAlign: TextAlign.center,
-                    AppStrings.welcomeBack.tr,
-                    style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 24.sp,
-                      color: isDarkMode
-                          ? AppColors.white
-                          : AppColors.blackMainTextColor,
-                    ),
-                  ),
-                  Gap(8),
-                  */
-/*    Text(
-                    AppStrings.letsGetStarted.tr,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: isDarkMode
-                          ? Colors.black
-                          : AppColors.grayTextSecondaryColor,
-                    ),
-                  ),*//*
-
-                  Gap(24),
-                  CustomTextField(
-                    title: AppStrings.email.tr,
-                    hintText: AppStrings.enterYourEmail.tr,
-                    keyboardType: TextInputType.emailAddress,
-                    prefixIcon: Icon(Icons.mail_outline_outlined),
-                    validator: TextFieldValidator.email(),
-                  ),
-                  Gap(14),
-                  CustomTextField(
-                    title: AppStrings.password.tr,
-                    hintText: AppStrings.enterYourPassword.tr,
-                    keyboardType: TextInputType.emailAddress,
-                    prefixIcon: Icon(Icons.lock_outline),
-                    isPassword: true,
-                    validator: TextFieldValidator.password(),
-                  ),
-                  Gap(14),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(),
-                      GestureDetector(
-                        onTap: () => AppRouter.route.pushNamed(
-                          RoutePath.forgetPasswordScreen,
-                        ),
-                        child: CustomAlignText(
-                          text: AppStrings.forgotPassword.tr,
-                          textAlign: TextAlign.end,
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Gap(28),
-                  CustomButton(
-                    text: AppStrings.signIn.tr,
-                    onTap: () {
-                      CommonController.to.isSeller.value == true
-                          ? AppRouter.route.goNamed(RoutePath.driverNavScreen)
-                          : AppRouter.route.goNamed(
-                              RoutePath.parcelOwnerNavScreen,
-                            );
-                    },
-                  ),
-                  Gap(32),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          color: AppColors.grayTextSecondaryColor,
-                          thickness: 1,
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8),
-                        child: Text(
-                          AppStrings.signInWith.tr,
-                          style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 14.sp,
-                            color: isDarkMode
-                                ? AppColors.white
-                                : AppColors.blackMainTextColor,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: AppColors.grayTextSecondaryColor,
-                          thickness: 1,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Gap(24),
-
-                  /// ----------- SOCIAL ICONS ------------
-                  Row(
-                    spacing: 24,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(
-                            width: 1,
-                            color: AppColors.blueTextColor400,
-                          ),
-                        ),
-                        child: Assets.icons.google.svg(width: 22),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(
-                            width: 1,
-                            color: AppColors.blueTextColor400,
-                          ),
-                        ),
-                        child: Assets.icons.facebook.svg(width: 22),
-                      ),
-                    ],
-                  ),
-                  Gap(32),
-
-                  /// ----------- New Here + Register ----------
-                  Column(
-                    spacing: 4,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        AppStrings.dontHaveAnAccount.tr,
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-
-                      GestureDetector(
-                        onTap: () => AppRouter.route.pushNamed(
-                          RoutePath.vendorSelectionScreen,
-                        ),
-                        child: Text(
-                          AppStrings.signIn.tr,
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(
-                                color: isDarkMode
-                                    ? AppColors.white
-                                    : AppColors.greenTextColor,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+        bottom: false,
+        child: Column(
+          children: [
+            // Top Section
+            Expanded(
+              flex: 4,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Assets.icons.appLogo.svg(width: 120),
+                    const Gap(20),
+                  ],
+                ),
               ),
             ),
-          ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 20,
+              ),
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppStrings.signIn.tr,
+                      style: context.headlineMedium.copyWith(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Gap(8),
+                    Text(
+                      AppStrings.getStarted.tr,
+                      style: context.titleMedium.copyWith(
+                        color: AppColors.white.withValues(alpha: 0.9),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Expanded(
+              flex: 7,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(24),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        const Gap(24),
+                        CustomTextField(
+                          controller: _emailController,
+                          title: null,
+                          hintText: AppStrings.enterEmailAddress.tr,
+                        ),
+                        const Gap(16),
+                        CustomTextField(
+                          controller: _passwordController,
+                          hintText: AppStrings.enterPassword.tr,
+                          isPassword: true,
+                        ),
+                        const Gap(24),
+                        CustomButton(
+                          text: AppStrings.signIn.tr,
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              // Handle sign in
+                            }
+                          },
+                        ),
+                        const Gap(16),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: GestureDetector(
+                            onTap: () {
+                              // Handle forgot password
+                            },
+                            child: Text(
+                              AppStrings.forgotPassword.tr,
+                              style: context.bodyMedium.copyWith(
+                                color: AppColors.primaryColor,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Gap(30),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            AppStrings.dontHaveAccount.tr,
+                            style: context.titleSmall.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        const Gap(12),
+                        OutlinedButton(
+                          onPressed: () {
+                            AppRouter.route.pushNamed(RoutePath.signUpScreen);
+                          },
+                          style: context.outlinedButtonStyle.copyWith(
+                            foregroundColor: WidgetStateProperty.all(
+                              AppColors.primaryColor,
+                            ),
+                          ),
+                          child: Text(
+                            AppStrings.createNewAccount.tr,
+                            style: context.bodyMedium.copyWith(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        const Gap(24),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
-*/

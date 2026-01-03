@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_tracker_app/core/router/route_path.dart';
+import 'package:health_tracker_app/features/auth/active/active_otp_screen.dart';
+import 'package:health_tracker_app/features/auth/choose_gender/choose_gender_screen.dart';
+import 'package:health_tracker_app/features/auth/login/login_screen.dart';
+import 'package:health_tracker_app/features/auth/sign_up/sign_up_screen.dart';
+import 'package:health_tracker_app/features/auth/verify_otp/verify_otp_screen.dart';
 import 'package:health_tracker_app/features/onboarding/onboarding_screen.dart';
 import 'package:health_tracker_app/features/splash/splash_screen.dart';
 import 'package:health_tracker_app/utils/extension/base_extension.dart';
@@ -35,16 +40,16 @@ class AppRouter {
           );
         },
       ),
-      /*GoRoute(
-        name: RoutePath.vendorSelectionScreen,
-        path: RoutePath.vendorSelectionScreen.addBasePath,
-        pageBuilder: (context, state) {
-          return _buildPageWithAnimation(
-            child: const VendorSelectionScreen(),
-            state: state,
-          );
-        },
-      ),
+      //  GoRoute(
+      //         name: RoutePath.vendorSelectionScreen,
+      //         path: RoutePath.vendorSelectionScreen.addBasePath,
+      //         pageBuilder: (context, state) {
+      //           return _buildPageWithAnimation(
+      //             child: const VendorSelectionScreen(),
+      //             state: state,
+      //           );
+      //         },
+      //       ),
       GoRoute(
         name: RoutePath.loginScreen,
         path: RoutePath.loginScreen.addBasePath,
@@ -66,36 +71,36 @@ class AppRouter {
         },
       ),
 
-      GoRoute(
-        name: RoutePath.forgetPasswordScreen,
-        path: RoutePath.forgetPasswordScreen.addBasePath,
-        pageBuilder: (context, state) {
-          return _buildPageWithAnimation(
-            child: const ForgetPasswordScreen(),
-            state: state,
-          );
-        },
-      ),
+      // GoRoute(
+      //   name: RoutePath.forgetPasswordScreen,
+      //   path: RoutePath.forgetPasswordScreen.addBasePath,
+      //   pageBuilder: (context, state) {
+      //     return _buildPageWithAnimation(
+      //       child: const ForgetPasswordScreen(),
+      //       state: state,
+      //     );
+      //   },
+      // ),
       GoRoute(
         name: RoutePath.verifyOtpScreen,
         path: RoutePath.verifyOtpScreen.addBasePath,
         pageBuilder: (context, state) {
           return _buildPageWithAnimation(
-            child: VerifyOtpScreen(),
+            child: const VerifyOtpScreen(),
             state: state,
           );
         },
       ),
-      GoRoute(
-        name: RoutePath.resetPasswordScreen,
-        path: RoutePath.resetPasswordScreen.addBasePath,
-        pageBuilder: (context, state) {
-          return _buildPageWithAnimation(
-            child: ResetPasswordScreen(),
-            state: state,
-          );
-        },
-      ),
+      // GoRoute(
+      //   name: RoutePath.resetPasswordScreen,
+      //   path: RoutePath.resetPasswordScreen.addBasePath,
+      //   pageBuilder: (context, state) {
+      //     return _buildPageWithAnimation(
+      //       child: ResetPasswordScreen(),
+      //       state: state,
+      //     );
+      //   },
+      // ),
       GoRoute(
         name: RoutePath.activeOtpScreen,
         path: RoutePath.activeOtpScreen.addBasePath,
@@ -106,59 +111,68 @@ class AppRouter {
           );
         },
       ),
-
+      GoRoute(
+        name: RoutePath.chooseGenderScreen,
+        path: RoutePath.chooseGenderScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const ChooseGenderScreen(),
+            state: state,
+          );
+        },
+      ),
 
       //=================Profile ===================
-      GoRoute(
-        name: RoutePath.profileScreen,
-        path: RoutePath.profileScreen.addBasePath,
-        pageBuilder: (context, state) {
-          return _buildPageWithAnimation(child: ProfileScreen(), state: state);
-        },
-      ),
-      GoRoute(
-        name: RoutePath.editProfileScreen,
-        path: RoutePath.editProfileScreen.addBasePath,
-        pageBuilder: (context, state) {
-          return _buildPageWithAnimation(
-            child: EditProfileScreen(),
-            state: state,
-          );
-        },
-      ),
+      // GoRoute(
+      //   name: RoutePath.profileScreen,
+      //   path: RoutePath.profileScreen.addBasePath,
+      //   pageBuilder: (context, state) {
+      //     return _buildPageWithAnimation(child: ProfileScreen(), state: state);
+      //   },
+      // ),
+      // GoRoute(
+      //   name: RoutePath.editProfileScreen,
+      //   path: RoutePath.editProfileScreen.addBasePath,
+      //   pageBuilder: (context, state) {
+      //     return _buildPageWithAnimation(
+      //       child: EditProfileScreen(),
+      //       state: state,
+      //     );
+      //   },
+      // ),
 
       //=============Setting==========
-      GoRoute(
-        name: RoutePath.changePasswordScreen,
-        path: RoutePath.changePasswordScreen.addBasePath,
-        pageBuilder: (context, state) {
-          return _buildPageWithAnimation(
-            child: ChangePasswordScreen(),
-            state: state,
-          );
-        },
-      ),
+      // GoRoute(
+      //   name: RoutePath.changePasswordScreen,
+      //   path: RoutePath.changePasswordScreen.addBasePath,
+      //   pageBuilder: (context, state) {
+      //     return _buildPageWithAnimation(
+      //       child: ChangePasswordScreen(),
+      //       state: state,
+      //     );
+      //   },
+      // ),
 
-        GoRoute(
-        name: RoutePath.privacyPolicyScreen,
-        path: RoutePath.privacyPolicyScreen.addBasePath,
-        pageBuilder: (context, state) {
-          return _buildPageWithAnimation(
-            child: PrivacyPolicyScreen(),
-            state: state,
-          );
-        },
-      ),
-      GoRoute(
-        name: RoutePath.termsAndConditionsScreen,
-        path: RoutePath.termsAndConditionsScreen.addBasePath,
-        pageBuilder: (context, state) {
-          return _buildPageWithAnimation(
-            child: TermsAndConditionsScreen(),
-            state: state,
-          );
-        },
-      ),*/
+      //   GoRoute(
+      //   name: RoutePath.privacyPolicyScreen,
+      //   path: RoutePath.privacyPolicyScreen.addBasePath,
+      //   pageBuilder: (context, state) {
+      //     return _buildPageWithAnimation(
+      //       child: PrivacyPolicyScreen(),
+      //       state: state,
+      //     );
+      //   },
+      // ),
+      // GoRoute(
+      //   name: RoutePath.termsAndConditionsScreen,
+      //   path: RoutePath.termsAndConditionsScreen.addBasePath,
+      //   pageBuilder: (context, state) {
+      //     return _buildPageWithAnimation(
+      //       child: TermsAndConditionsScreen(),
+      //       state: state,
+      //     );
+      //   },
+      // ),
 
       // GoRoute(
       //   name: RoutePath.bookingsScreen,

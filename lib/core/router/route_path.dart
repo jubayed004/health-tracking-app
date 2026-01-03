@@ -14,6 +14,7 @@ class RoutePath {
   static const String resetPasswordScreen = 'resetPasswordScreen';
   static const String driverNavScreen = 'driverNavScreen';
   static const String activeOtpScreen = 'activeOtpScreen';
+  static const String chooseGenderScreen = 'chooseGenderScreen';
   static const String passwordAndSecurityScreen = 'passwordAndSecurityScreen';
   static const String changePasswordScreen = 'changePasswordScreen';
   static const String termsAndConditionsScreen = 'termsAndConditionsScreen';

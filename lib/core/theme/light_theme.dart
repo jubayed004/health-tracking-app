@@ -34,15 +34,15 @@ final ThemeData lightTheme = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       side: const BorderSide(color: AppColors.primaryColor),
-      foregroundColor: Colors.white,
-      minimumSize: const Size(140, 32),
-      padding: const EdgeInsets.symmetric(vertical: 0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      /* shape: CircleBorder(side: BorderSide(color: AppColors.bgSecondaryButtonColor)),*/
+      foregroundColor: AppColors.primaryColor,
+      minimumSize: const Size(double.infinity, 50),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       textStyle: const TextStyle(
         fontFamily: 'Urbanist',
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
+        fontSize:
+            16, // Image looks slightly larger than 14, defaulting to 16 for "button" size
+        fontWeight: FontWeight.w700, // Bold as per image
       ),
     ),
   ),

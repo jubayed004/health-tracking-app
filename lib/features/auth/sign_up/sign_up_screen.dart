@@ -1,11 +1,14 @@
-/*
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get_utils/get_utils.dart';
-import 'package:health_tracker_app/helper/validator/text_field_validator.dart';
+import 'package:get/get.dart';
+import 'package:health_tracker_app/core/custom_assets/assets.gen.dart';
+import 'package:health_tracker_app/core/router/route_path.dart';
+import 'package:health_tracker_app/core/router/routes.dart';
+import 'package:health_tracker_app/share/widgets/button/custom_button.dart';
 import 'package:health_tracker_app/share/widgets/text_field/custom_text_field.dart';
 import 'package:health_tracker_app/utils/app_strings/app_strings.dart';
+import 'package:health_tracker_app/utils/color/app_colors.dart';
+import 'package:health_tracker_app/utils/extension/base_extension.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -15,175 +18,153 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        centerTitle: true,
-        title: Text(AppStrings.ntsamaela.tr),
-      ),
+      backgroundColor: AppColors.primaryColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-          child: Column(
-            children: [
-              /// ---------- MAIN TITLE ----------
-              Text(
-                AppStrings.createYourAccount.tr,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 22.sp,
-                  color: isDarkMode
-                      ? AppColors.white
-                      : AppColors.blackMainTextColor,
+        bottom: false,
+        child: Column(
+          children: [
+            // Top Section
+            Expanded(
+              flex: 3,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Assets.icons.appLogo.svg(width: 120),
+                    const Gap(20),
+                  ],
                 ),
               ),
-              Gap(6),
+            ),
 
-              /// ---------- SUBTITLE ----------
-              Text(
-                AppStrings.signUpTitle.tr,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppColors.grayTextSecondaryColor,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 20,
+              ),
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppStrings.signUp.tr.toUpperCase(),
+                      style: context.headlineMedium.copyWith(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Gap(8),
+                    Text(
+                      AppStrings.toGetStarted.tr,
+                      style: context.titleMedium.copyWith(
+                        color: AppColors.white.withValues(alpha: 0.9),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Gap(26),
+            ),
 
-              /// ---------- Name ----------
-              CustomTextField(
-                title: AppStrings.fullName.tr,
-                hintText: AppStrings.enterYourName.tr,
-                keyboardType: TextInputType.name,
-                validator: TextFieldValidator.name(),
-              ),
-              Gap(14),
-
-              /// ---------- Email ----------
-              CustomTextField(
-                title: AppStrings.email.tr,
-                hintText: AppStrings.enterYourEmail.tr,
-                keyboardType: TextInputType.emailAddress,
-                prefixIcon: const Icon(Icons.mail_outline),
-                validator: TextFieldValidator.email(),
-              ),
-              Gap(14),
-
-              /// ---------- Password ----------
-              CustomTextField(
-                title: AppStrings.password.tr,
-                hintText: AppStrings.enterYourPassword.tr,
-                prefixIcon: const Icon(Icons.lock_outline),
-                isPassword: true,
-                validator: TextFieldValidator.password(),
-              ),
-              Gap(14),
-
-              /// ---------- Confirm Password ----------
-              CustomTextField(
-                title: AppStrings.confirmPassword.tr,
-                hintText: AppStrings.confirmPassword.tr,
-                prefixIcon: const Icon(Icons.lock_outline),
-                isPassword: true,
-                validator: TextFieldValidator.password(),
-              ),
-              Gap(24),
-
-              /// ---------- Register Button ----------
-              CustomButton(
-                text: AppStrings.signUp.tr,
-                onTap: () =>
-                    AppRouter.route.pushNamed(RoutePath.activeOtpScreen),
-              ),
-
-              Gap(26),
-
-              /// ---------- Divider + Text ----------
-              Row(
-                children: [
-                  Expanded(
-                    child: Divider(
-                      thickness: 1,
-                      color: AppColors.grayTextSecondaryColor,
-                    ),
+            Expanded(
+              flex: 10,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(
-                      AppStrings.signInWith.tr,
-                      style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14.sp,
-                        color: AppColors.blackMainTextColor,
-                      ),
+                ),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(24),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Gap(24),
+                        CustomTextField(
+                          controller: _nameController,
+                          title: null,
+                          hintText: AppStrings.enterYourName.tr,
+                        ),
+                        const Gap(16),
+                        CustomTextField(
+                          controller: _emailController,
+                          title: null,
+                          hintText: AppStrings.enterYourEmail.tr,
+                        ),
+                        const Gap(16),
+                        CustomTextField(
+                          controller: _passwordController,
+                          hintText: AppStrings.enterPassword.tr,
+                          isPassword: true,
+                        ),
+                        const Gap(16),
+                        CustomTextField(
+                          controller: _confirmPasswordController,
+                          hintText: AppStrings.confirmPassword.tr,
+                          isPassword: true,
+                        ),
+                        const Gap(24),
+                        CustomButton(
+                          text: AppStrings.createAccount.tr,
+                          onTap: () {
+                            // if (_formKey.currentState!.validate()) {
+                            //   // Handle sign up
+                            // }
+                            AppRouter.route.pushNamed(
+                              RoutePath.activeOtpScreen,
+                            );
+                          },
+                        ),
+                        const Gap(24),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            AppStrings.alreadyHaveAccount.tr,
+                            style: context.titleSmall.copyWith(),
+                          ),
+                        ),
+                        const Gap(12),
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton(
+                            onPressed: () {
+                              AppRouter.route.goNamed(RoutePath.loginScreen);
+                            },
+                            child: Text(AppStrings.loginExistingAccount.tr),
+                          ),
+                        ),
+                        const Gap(24),
+                      ],
                     ),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      thickness: 1,
-                      color: AppColors.grayTextSecondaryColor,
-                    ),
-                  ),
-                ],
-              ),
-              Gap(26),
-
-              /// ---------- Social Icons ----------
-              Row(
-                spacing: 24,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        width: 1,
-                        color: AppColors.blueTextColor400,
-                      ),
-                    ),
-                    child: Assets.icons.google.svg(width: 22),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        width: 1,
-                        color: AppColors.blueTextColor400,
-                      ),
-                    ),
-                    child: Assets.icons.facebook.svg(width: 22),
-                  ),
-                ],
-              ),
-              Gap(34),
-
-              /// ---------- Already Have Account ----------
-              Text(
-                AppStrings.dontHaveAnAccount.tr,
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-              Gap(4),
-              GestureDetector(
-                onTap: () => AppRouter.route.pushNamed(RoutePath.loginScreen),
-                child: Text(
-                  AppStrings.signIn.tr,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.greenTextColor,
-                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              Gap(10),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
-*/

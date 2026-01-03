@@ -10,7 +10,7 @@ class AppColors {
   static const Color warning = Color(0xFFFF9800);
   static const Color info = Color(0xFF2196F3);
 
-  static const Color primaryColor = Color(0xFF28638B);
+  static const Color primaryColor = Color(0xFF8F99FB);
   static const Color secondPrimaryColor = Color(0xFF5E5656);
   static const Color backgroundColor = Color(0xFFFCFCFC);
   static const Color navBarColor = Color(0xFFeaeff3);

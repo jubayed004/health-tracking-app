@@ -1,17 +1,11 @@
-/*
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:percel_delivery_app/core/custom_assets/assets.gen.dart';
-import 'package:percel_delivery_app/core/router/route_path.dart';
-import 'package:percel_delivery_app/core/router/routes.dart';
-import 'package:percel_delivery_app/features/auth/controller/auth_controller.dart';
-import 'package:percel_delivery_app/share/widgets/button/custom_button.dart';
-import 'package:percel_delivery_app/share/widgets/text_field/otp_text_field.dart';
-import 'package:percel_delivery_app/utils/app_strings/app_strings.dart';
-import 'package:percel_delivery_app/utils/color/app_colors.dart';
-import 'package:percel_delivery_app/utils/extension/base_extension.dart';
+import 'package:health_tracker_app/share/widgets/button/custom_button.dart';
+import 'package:health_tracker_app/utils/app_strings/app_strings.dart';
+import 'package:health_tracker_app/utils/color/app_colors.dart';
+import 'package:health_tracker_app/utils/extension/base_extension.dart';
+import 'package:pinput/pinput.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   const VerifyOtpScreen({super.key});
@@ -21,107 +15,130 @@ class VerifyOtpScreen extends StatefulWidget {
 }
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController verifyOtp = TextEditingController();
-  final AuthController _auth = Get.find<AuthController>();
+  final _pinController = TextEditingController();
 
   @override
   void dispose() {
-    verifyOtp.dispose();
+    _pinController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        centerTitle: true,
-        title: Text(
-          AppStrings.ntsamaela.tr,
-          style: context.headlineSmall.copyWith(color: AppColors.primaryColor),
-        ),
+    // Determine screen height/width if needed, or just use spacing
+    final defaultPinTheme = PinTheme(
+      width: 56,
+      height: 60,
+      textStyle: context.titleLarge.copyWith(
+        fontWeight: FontWeight.bold,
+        color: AppColors.blackMainTextColor,
       ),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        border: Border.all(color: AppColors.linesDarkColor),
+        borderRadius: BorderRadius.circular(12),
+      ),
+    );
+
+    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+      border: Border.all(color: AppColors.primaryColor),
+    );
+
+    return Scaffold(
+      backgroundColor: AppColors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Gap(20.h),
-
-                /// ---------- MAIN TITLE ----------
-                Text(
-                  AppStrings.verifyYourAccount.tr,
-                  textAlign: TextAlign.center,
-                  style: context.headlineSmall,
-                ),
-                Gap(12.h),
-
-                /// ---------- SUBTITLE ----------
-                Text(
-                  AppStrings.verifyYourAccountTitle.tr,
-                  textAlign: TextAlign.center,
-                  style: context.bodyMedium.copyWith(
-                    color: isDarkMode
-                        ? Colors.white
-                        : AppColors.grayTextSecondaryColor,
-                    fontSize: 14.sp,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Back Button
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Container(
+                  width: 48,
+                  height: 48,
+                  decoration: const BoxDecoration(
+                    color: AppColors.primaryColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.arrow_back_ios_new,
+                    color: AppColors.white,
+                    size: 20,
                   ),
                 ),
-                Gap(28.h),
-                Assets.icons.otpicon.svg(),
+              ),
+              const Gap(32),
 
-                Gap(32.h),
-
-                /// ---------- OTP INPUT ----------
-                Align(
-                  alignment: Alignment.center,
-                  child: OtpTextField(controller: verifyOtp),
+              // Title
+              Text(
+                AppStrings.enterYour6DigitCode.tr,
+                style: context.headlineMedium.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.blackMainTextColor,
                 ),
+              ),
+              const Gap(8),
 
-                Gap(28.h),
+              // Subtitle
+              Text(
+                AppStrings.enterOtpSubtitle.tr,
+                style: context.bodyMedium.copyWith(
+                  color: AppColors.grayTextSecondaryColor,
+                ),
+              ),
+              const Gap(32),
 
-                /// ---------- CONFIRM BUTTON ----------
-                CustomButton(
-                  text: AppStrings.verifyCode.tr,
-                  onTap: () {
-                    AppRouter.route.pushNamed(RoutePath.resetPasswordScreen);
+              // OTP Fields
+              Center(
+                child: Pinput(
+                  length: 6,
+                  controller: _pinController,
+                  defaultPinTheme: defaultPinTheme,
+                  focusedPinTheme: focusedPinTheme,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  onCompleted: (pin) {
+                    // Handle PIN completion
                   },
                 ),
-                Gap(28.h),
+              ),
+              const Gap(32),
 
-                /// ---------- DON'T GET CODE TEXT ----------
-                Text(AppStrings.didGetACode.tr, style: context.titleMedium),
-                Gap(8.h),
+              // Continue Button
+              CustomButton(
+                text: AppStrings.continueText.tr,
+                onTap: () {
+                  // Handle Validate OTP
+                },
+              ),
+              const Gap(24),
 
-                ///  ---------- RESEND WITH TIMER UI ----------
-                Obx(
-                  () => _auth.isResendEnabled.value
-                      ? TextButton(
-                          onPressed: () {
-                            _auth.resendCode();
-                          },
-                          child: Text(
-                            AppStrings.resendCode.tr,
-                            style: context.titleSmall.copyWith(
-                              color: AppColors.greenTextColor,
-                            ),
-                          ),
-                        )
-                      : Text(
-                          "Resend code in 00:${_auth.start.value.toString().padLeft(2, '0')}s",
-                          style: context.titleSmall,
+              // Resend OTP
+              Center(
+                child: RichText(
+                  text: TextSpan(
+                    text: "${AppStrings.haventReceivedOtp.tr} ",
+                    style: context.bodyMedium.copyWith(
+                      color: AppColors.blackMainTextColor,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: AppStrings.resendOtp.tr,
+                        style: context.bodyMedium.copyWith(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.w600,
                         ),
+                        // Recognizer can be added here
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
-*/
