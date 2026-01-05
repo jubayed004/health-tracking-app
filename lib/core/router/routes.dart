@@ -10,6 +10,7 @@ import 'package:health_tracker_app/features/auth/subscription/subscription_scree
 import 'package:health_tracker_app/features/auth/thank_you/thank_you_screen.dart';
 import 'package:health_tracker_app/features/auth/sign_up/sign_up_screen.dart';
 import 'package:health_tracker_app/features/auth/verify_otp/verify_otp_screen.dart';
+import 'package:health_tracker_app/features/nav/navigation_page.dart';
 import 'package:health_tracker_app/features/onboarding/onboarding_screen.dart';
 import 'package:health_tracker_app/features/splash/splash_screen.dart';
 import 'package:health_tracker_app/utils/extension/base_extension.dart';
@@ -161,6 +162,16 @@ class AppRouter {
         pageBuilder: (context, state) {
           return _buildPageWithAnimation(
             child: const SubscriptionScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.navigationPages,
+        path: RoutePath.navigationPages.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const NavigationPage(),
             state: state,
           );
         },

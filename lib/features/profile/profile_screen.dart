@@ -1,20 +1,9 @@
-/*
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:percel_delivery_app/core/router/route_path.dart';
-import 'package:percel_delivery_app/core/router/routes.dart';
-import 'package:percel_delivery_app/features/profile/widgets/profile_menu_item.dart';
-import 'package:percel_delivery_app/features/profile/widgets/profile_section_title.dart';
-import 'package:percel_delivery_app/share/widgets/button/custom_button.dart';
-import 'package:percel_delivery_app/share/widgets/custom_buttom_sheet/custom_buttom_sheet.dart';
-import 'package:percel_delivery_app/share/widgets/network_image/custom_network_image.dart';
-import 'package:percel_delivery_app/utils/app_strings/app_strings.dart';
-import 'package:percel_delivery_app/utils/color/app_colors.dart';
-import 'package:percel_delivery_app/utils/common_controller/common_controller.dart';
-import 'package:percel_delivery_app/utils/extension/base_extension.dart';
+import 'package:health_tracker_app/core/router/routes.dart';
+import 'package:health_tracker_app/share/widgets/button/circular_arrow_button.dart';
+import 'package:health_tracker_app/utils/color/app_colors.dart';
+import 'package:health_tracker_app/utils/extension/base_extension.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -24,274 +13,252 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 24,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Column(
+              children: [
+                // Header
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24.0,
+                    vertical: 10,
+                  ),
+                  child: Row(
+                    children: [
+                      CircularArrowButton(onTap: () => AppRouter.route.pop()),
+                      Expanded(
+                        child: Text(
+                          "Profile",
+                          textAlign: TextAlign.center,
+                          style: context.titleLarge.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.blackMainTextColor,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 40), // Balance the back button
+                    ],
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(8),
+                const Gap(20),
 
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10.r),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.1),
-                            blurRadius: 24.r,
-                            offset: Offset(1, 1),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 150.h,
-                                width: 100.w,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5),
-                                  child: CustomNetworkImage(
-                                    imageUrl:
-                                        "https://wallpapers.com/images/featured/image-pictures-79gc4p3mqu7an848.jpg",
-                                    fit: BoxFit.cover,
+                // Profile Card
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      children: [
+                        // Profile Image with Edit Button
+                        Stack(
+                          children: [
+                            Container(
+                              width: 80,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 3,
+                                ),
+                              ),
+                              child: ClipOval(
+                                child: Image.network(
+                                  'https://i.pravatar.cc/150?img=47',
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Container(
+                                      color: Colors.white,
+                                      child: const Icon(
+                                        Icons.person,
+                                        size: 40,
+                                        color: AppColors.primaryColor,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Container(
+                                padding: const EdgeInsets.all(6),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primaryColor,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 2,
                                   ),
-                                  */
-/*Obx(() {
-                                *//*
-
-                                  */
-/*    //final imageUrl = profileController.profile.value.data?.profileImage;
-                                    print("======================profile image=================$imageUrl");
-                                    if (imageUrl == null || imageUrl.isEmpty) {
-                                      return CustomImage(imageSrc:  'assets/icons/Profileicon.svg');
-                                    }*//*
-
-                                  */
-/*
-                                    return ;
-                                  }),*//*
-
+                                ),
+                                child: const Icon(
+                                  Icons.camera_alt,
+                                  size: 16,
+                                  color: Colors.white,
                                 ),
                               ),
-                              Gap(10),
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  spacing: 12,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Flexible(
-                                          child: Text(
-                                            "Jubayed Islam",
-                                            style: context.titleSmall,
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          behavior: HitTestBehavior.opaque,
-                                          onTap: () {
-                                            AppRouter.route.pushNamed(
-                                              RoutePath.editProfileScreen,
-                                            );
-                                          },
-                                          child: Container(
-                                            padding: EdgeInsets.all(2),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(2.r),
-                                              color: Colors.white,
-                                              border: Border.all(
-                                                color: AppColors.greenTextColor,
-                                                width: 1,
-                                              ),
-                                            ),
-                                            child: Row(
-                                              spacing: 4,
-                                              children: [
-                                                Icon(Iconsax.edit),
-                                                Text(
-                                                  "Edit Profile ",
-                                                  style: context.labelMedium,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                            ),
+                          ],
+                        ),
+                        const Gap(12),
+
+                        // Name and Email
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "Iris Rodriguez",
+                                    style: context.titleMedium.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Icon(
-                                          Icons.email_outlined,
-                                          color: AppColors.primaryColor,
-                                        ),
-                                        Gap(4),
-                                        Expanded(
-                                          child: Text(
-                                            textAlign: TextAlign.start,
-                                            */
-/*profileController.profile.value.data?.email ?? *//*
- "mohammadjubayed.islam97@gamil.com",
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 3,
-                                            style: context.labelMedium,
-                                          ),
-                                        ),
-                                      ],
+                                  ),
+                                  const Gap(4),
+                                  Text(
+                                    "irisrodriguez@mail.com",
+                                    style: context.bodyMedium.copyWith(
+                                      color: Colors.white.withOpacity(0.9),
                                     ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Iconsax.call,
-                                          color: AppColors.primaryColor,
-                                        ),
-                                        Gap(4),
-                                        Text(
-                                          */
-/*profileController.profile.value.data?.phoneNumber ?? *//*
- "08834534524",
-                                          style: context.labelMedium,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            // Edit Button
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                "Edit",
+                                style: context.labelLarge.copyWith(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    Gap(32.h),
-                    ProfileSectionTitle(title: 'SETTINGS SECTION'.tr),
-                    Gap(12.h),
-                    if (CommonController.to.isSeller.value)
-                      ProfileMenuItem(
-                        title: AppStrings.professionalInfo.tr,
+                  ),
+                ),
+                const Gap(24),
+
+                // Menu Items
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Column(
+                    children: [
+                      _buildMenuItem(
+                        icon: Icons.settings_outlined,
+                        title: "Account Settings",
                         onTap: () {
-                          AppRouter.route.pushNamed(
-                            RoutePath.professionalInfoScreen,
-                          );
+                          // Navigate to account settings
                         },
                       ),
-                    if (CommonController.to.isSeller.value)
-                      ProfileMenuItem(
-                        title: AppStrings.reviewsAndRatings.tr,
+                      _buildMenuItem(
+                        icon: Icons.support_agent_outlined,
+                        title: "Contact & Support",
                         onTap: () {
-                          AppRouter.route.pushNamed(
-                            RoutePath.customerReviewScreen,
-                          );
+                          // Navigate to support
                         },
                       ),
-                    */
-/* if(CommonController.to.isSeller.value)
-                    ProfileMenuItem(title: AppStrings.adPromotional.tr, onTap: (){*//*
-
-                    */
-/*AppRouter.route.pushNamed(RoutePath.personalInformationScreen)*//*
-
-                    */
-/*}),*//*
-
-                    ProfileMenuItem(
-                      title: AppStrings.accountSetting.tr,
-                      onTap: () {
-                        AppRouter.route.pushNamed(
-                          RoutePath.passwordAndSecurityScreen,
-                        );
-                      },
-                    ),
-                    ProfileMenuItem(
-                      title: AppStrings.supportHelp.tr,
-                      onTap: () {
-                        AppRouter.route.pushNamed(RoutePath.supportHelpScreen);
-                      },
-                    ),
-                    if (!CommonController.to.isSeller.value)
-                      ProfileMenuItem(
-                        title: AppStrings.refund.tr,
+                      _buildMenuItem(
+                        icon: Icons.description_outlined,
+                        title: "Terms & Condition",
                         onTap: () {
-                          */
-/*AppRouter.route.pushNamed(RoutePath.favoriteTrainerScreen)*//*
-
+                          // Navigate to terms
                         },
                       ),
-                    if (!CommonController.to.isSeller.value)
-                      ProfileMenuItem(
-                        title: AppStrings.faqs.tr,
+                      _buildMenuItem(
+                        icon: Icons.privacy_tip_outlined,
+                        title: "Privacy & Policy",
                         onTap: () {
-                          */
-/*AppRouter.route.pushNamed(RoutePath.favoriteTrainerScreen)*//*
-
+                          // Navigate to privacy policy
                         },
                       ),
-                    ProfileMenuItem(
-                      title: AppStrings.notification.tr,
-                      onTap: () {
-                        AppRouter.route.pushNamed(
-                          RoutePath.driverNotificationScreen,
-                        );
-                      },
-                      isLast: true,
-                    ),
-                    Gap(24.h),
-                    ProfileSectionTitle(title: "More".tr),
-                    Gap(12.h),
-                    ProfileMenuItem(
-                      title: AppStrings.termsAndCondition.tr,
-                      onTap: () {
-                        AppRouter.route.pushNamed(
-                          RoutePath.termsAndConditionsScreen,
-                        );
-                      },
-                    ),
-                    ProfileMenuItem(
-                      title: AppStrings.privacyPolicy.tr,
-                      onTap: () {
-                        AppRouter.route.pushNamed(
-                          RoutePath.privacyPolicyScreen,
-                        );
-                      },
-                      isLast: true,
-                    ),
-                    Gap(24.h),
-                    CustomButton(
-                      text: AppStrings.logOut.tr,
-                      onTap: () {
-                        showYesNoModal(
-                          context,
-                          title: 'Hey!'.tr,
-                          message:
-                              'Are you sure you want to Logout your account?'
-                                  .tr,
-                          confirmButtonText: AppStrings.logOut.tr,
-                          onConfirm: () =>
-                              AppRouter.route.goNamed(RoutePath.loginScreen),
-                        );
-                      },
-                    ),
-                  ],
+                      const Gap(12),
+                      _buildMenuItem(
+                        icon: Icons.logout,
+                        title: "Logout",
+                        iconColor: AppColors.error,
+                        showArrow: false,
+                        onTap: () {
+                          // Show logout confirmation
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMenuItem({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+    Color? iconColor,
+    bool showArrow = true,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: iconColor ?? AppColors.primaryColor, size: 24),
+            const Gap(12),
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.blackMainTextColor,
                 ),
               ),
             ),
+            if (showArrow)
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: AppColors.grayTextSecondaryColor,
+              ),
           ],
         ),
       ),
     );
   }
 }
-*/

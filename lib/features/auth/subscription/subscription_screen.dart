@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:health_tracker_app/core/custom_assets/assets.gen.dart';
+import 'package:health_tracker_app/core/router/route_path.dart';
 import 'package:health_tracker_app/core/router/routes.dart';
 import 'package:health_tracker_app/share/widgets/button/circular_arrow_button.dart';
 import 'package:health_tracker_app/share/widgets/button/custom_button.dart';
@@ -137,9 +138,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               child: Column(
                 children: [
                   CustomButton(
-                    text: "Purchase Now", // TODO: Move to AppStrings
+                    text: "Purchase Now",
                     onTap: () {
-                      // Process Purchase
+                      AppRouter.route.goNamed(RoutePath.navigationPages);
                     },
                   ),
                   const Gap(10),
@@ -176,15 +177,11 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppColors
-                      .bgSecondaryButtonColor, // Using bg color for unselected, or white? Design looks white/gray.
-                  // Actually design shows white card for monthly, year has badge.
-                  // Let's use a subtle border or background.
-                  // Design: Monthly has gray border, Yearly has black border (selected).
+                  color: AppColors.bgSecondaryButtonColor,
                   border: Border.all(
                     color: isSelected
                         ? AppColors.blackMainTextColor
-                        : AppColors.linesDarkColor.withOpacity(0.5),
+                        : AppColors.linesDarkColor.withValues(alpha: .5),
                     width: isSelected ? 2 : 1,
                   ),
                   borderRadius: BorderRadius.circular(20),

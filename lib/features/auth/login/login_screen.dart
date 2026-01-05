@@ -112,9 +112,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         CustomButton(
                           text: AppStrings.signIn.tr,
                           onTap: () {
-                            if (_formKey.currentState!.validate()) {
-                              // Handle sign in
-                            }
+                            // if (_formKey.currentState!.validate()) {
+                            //   // Handle sign in
+                            // }
+                            AppRouter.route.pushNamed(
+                              RoutePath.navigationPages,
+                            );
                           },
                         ),
                         const Gap(16),
