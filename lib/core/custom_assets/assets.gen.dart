@@ -104,6 +104,10 @@ class $AssetsImagesGen {
   AssetGenImage get subsribtionImageOne =>
       const AssetGenImage('assets/images/subsribtion_image_one.png');
 
+  /// File path: assets/images/wellcomelogo.png
+  AssetGenImage get wellcomelogo =>
+      const AssetGenImage('assets/images/wellcomelogo.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     onboardingone,
@@ -112,6 +116,7 @@ class $AssetsImagesGen {
     splashimage,
     subscriationImageTwo,
     subsribtionImageOne,
+    wellcomelogo,
   ];
 }
 

@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:health_tracker_app/core/router/route_path.dart';
 import 'package:health_tracker_app/core/router/routes.dart';
-import 'package:health_tracker_app/features/onboarding/model/onboarding_model.dart';
 import 'package:health_tracker_app/features/onboarding/widgets/onboarding_page_card.dart';
 import 'package:health_tracker_app/share/widgets/button/circular_arrow_button.dart';
-import 'package:health_tracker_app/share/widgets/custom_image/custom_image.dart';
 import 'package:health_tracker_app/utils/color/app_colors.dart';
-import 'package:health_tracker_app/utils/extension/base_extension.dart';
-
 import 'controller/onboarding_controller.dart';
 
 class OnboardingScreen extends StatelessWidget {

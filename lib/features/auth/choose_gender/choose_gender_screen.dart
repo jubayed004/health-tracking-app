@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import 'package:health_tracker_app/core/router/route_path.dart';
 import 'package:health_tracker_app/core/router/routes.dart';
 import 'package:health_tracker_app/share/widgets/button/circular_arrow_button.dart';
-import 'package:health_tracker_app/share/widgets/button/custom_back_button.dart';
 import 'package:health_tracker_app/share/widgets/button/custom_button.dart';
 import 'package:health_tracker_app/utils/app_strings/app_strings.dart';
 import 'package:health_tracker_app/utils/color/app_colors.dart';
@@ -110,7 +111,7 @@ class _ChooseGenderScreenState extends State<ChooseGenderScreen> {
                 child: CustomButton(
                   text: AppStrings.continueText.tr,
                   onTap: () {
-                    // Navigate to next screen
+                    context.pushNamed(RoutePath.chooseHeightWeightScreen);
                   },
                 ),
               ),

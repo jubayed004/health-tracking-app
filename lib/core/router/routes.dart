@@ -3,7 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:health_tracker_app/core/router/route_path.dart';
 import 'package:health_tracker_app/features/auth/active/active_otp_screen.dart';
 import 'package:health_tracker_app/features/auth/choose_gender/choose_gender_screen.dart';
+import 'package:health_tracker_app/features/auth/choose_height_weight/choose_height_weight_screen.dart';
+import 'package:health_tracker_app/features/auth/date_of_birth/date_of_birth_screen.dart';
 import 'package:health_tracker_app/features/auth/login/login_screen.dart';
+import 'package:health_tracker_app/features/auth/subscription/subscription_screen.dart';
+import 'package:health_tracker_app/features/auth/thank_you/thank_you_screen.dart';
 import 'package:health_tracker_app/features/auth/sign_up/sign_up_screen.dart';
 import 'package:health_tracker_app/features/auth/verify_otp/verify_otp_screen.dart';
 import 'package:health_tracker_app/features/onboarding/onboarding_screen.dart';
@@ -117,6 +121,46 @@ class AppRouter {
         pageBuilder: (context, state) {
           return _buildPageWithAnimation(
             child: const ChooseGenderScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.chooseHeightWeightScreen,
+        path: RoutePath.chooseHeightWeightScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const ChooseHeightWeightScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.dateOfBirthScreen,
+        path: RoutePath.dateOfBirthScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const DateOfBirthScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.thankYouScreen,
+        path: RoutePath.thankYouScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const ThankYouScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.subscriptionScreen,
+        path: RoutePath.subscriptionScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const SubscriptionScreen(),
             state: state,
           );
         },

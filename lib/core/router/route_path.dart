@@ -15,6 +15,10 @@ class RoutePath {
   static const String driverNavScreen = 'driverNavScreen';
   static const String activeOtpScreen = 'activeOtpScreen';
   static const String chooseGenderScreen = 'chooseGenderScreen';
+  static const String chooseHeightWeightScreen = 'chooseHeightWeightScreen';
+  static const String dateOfBirthScreen = 'dateOfBirthScreen';
+  static const String thankYouScreen = 'thankYouScreen';
+  static const String subscriptionScreen = 'subscriptionScreen';
   static const String passwordAndSecurityScreen = 'passwordAndSecurityScreen';
   static const String changePasswordScreen = 'changePasswordScreen';
   static const String termsAndConditionsScreen = 'termsAndConditionsScreen';

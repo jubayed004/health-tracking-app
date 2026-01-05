@@ -16,7 +16,7 @@ class AppColors {
   static const Color navBarColor = Color(0xFFeaeff3);
   static const Color backgroundsLinesColor = Color(0xFFEBEBEE);
   static const Color orangeSecondaryAccentColor = Color(0xFFFDBA45);
-  static const Color bgSecondaryButtonColor = Color(0xFFEFF0F1);
+  static const Color bgSecondaryButtonColor = Color(0xFFF8F8F8);
   static const Color linesDarkColor = Color(0xFFCACACB);
 
   static const Color blackMainTextColor = Color(0xFF0F243E);
