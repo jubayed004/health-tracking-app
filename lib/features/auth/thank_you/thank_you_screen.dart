@@ -26,7 +26,7 @@ class ThankYouScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: CircularArrowButton(onTap: () => AppRouter.route.pop()),
               ),
-              const Gap(32),
+              const Gap(30),
 
               Expanded(flex: 3, child: Assets.images.wellcomelogo.image()),
 
