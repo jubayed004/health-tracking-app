@@ -16,6 +16,7 @@ class ExpandableText extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _ExpandableTextState createState() => _ExpandableTextState();
 }
 
@@ -46,8 +47,7 @@ class _ExpandableTextState extends State<ExpandableText> {
   }
 
   void _checkTextOverflow() {
-    final textStyle = widget.textStyle ??
-        context.textTheme.titleSmall;
+    final textStyle = widget.textStyle ?? context.textTheme.titleSmall;
 
     final textSpan = TextSpan(text: widget.text, style: textStyle);
     final textPainter = TextPainter(
@@ -79,8 +79,7 @@ class _ExpandableTextState extends State<ExpandableText> {
       children: [
         Text(
           widget.text,
-          style: widget.textStyle ??
-              context.textTheme.titleSmall,
+          style: widget.textStyle ?? context.textTheme.titleSmall,
           maxLines: _isExpanded ? null : widget.maxLines,
           overflow: _isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
         ),
@@ -93,8 +92,7 @@ class _ExpandableTextState extends State<ExpandableText> {
             },
             child: Text(
               _isExpanded ? 'See Less' : "See More",
-              style: widget.buttonStyle ??
-                  context.textTheme.titleMedium,
+              style: widget.buttonStyle ?? context.textTheme.titleMedium,
             ),
           ),
       ],

@@ -12,6 +12,9 @@ import 'package:health_tracker_app/features/auth/sign_up/sign_up_screen.dart';
 import 'package:health_tracker_app/features/auth/verify_otp/verify_otp_screen.dart';
 import 'package:health_tracker_app/features/nav/navigation_page.dart';
 import 'package:health_tracker_app/features/onboarding/onboarding_screen.dart';
+import 'package:health_tracker_app/features/other/change_password_screen.dart';
+import 'package:health_tracker_app/features/other/setting_screen.dart';
+import 'package:health_tracker_app/features/profile/edit_profile_screen.dart';
 import 'package:health_tracker_app/features/splash/splash_screen.dart';
 import 'package:health_tracker_app/utils/extension/base_extension.dart';
 
@@ -45,16 +48,6 @@ class AppRouter {
           );
         },
       ),
-      //  GoRoute(
-      //         name: RoutePath.vendorSelectionScreen,
-      //         path: RoutePath.vendorSelectionScreen.addBasePath,
-      //         pageBuilder: (context, state) {
-      //           return _buildPageWithAnimation(
-      //             child: const VendorSelectionScreen(),
-      //             state: state,
-      //           );
-      //         },
-      //       ),
       GoRoute(
         name: RoutePath.loginScreen,
         path: RoutePath.loginScreen.addBasePath,
@@ -178,35 +171,38 @@ class AppRouter {
       ),
 
       //=================Profile ===================
-      // GoRoute(
-      //   name: RoutePath.profileScreen,
-      //   path: RoutePath.profileScreen.addBasePath,
-      //   pageBuilder: (context, state) {
-      //     return _buildPageWithAnimation(child: ProfileScreen(), state: state);
-      //   },
-      // ),
-      // GoRoute(
-      //   name: RoutePath.editProfileScreen,
-      //   path: RoutePath.editProfileScreen.addBasePath,
-      //   pageBuilder: (context, state) {
-      //     return _buildPageWithAnimation(
-      //       child: EditProfileScreen(),
-      //       state: state,
-      //     );
-      //   },
-      // ),
+      GoRoute(
+        name: RoutePath.editProfileScreen,
+        path: RoutePath.editProfileScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: EditProfileScreen(),
+            state: state,
+          );
+        },
+      ),
 
       //=============Setting==========
-      // GoRoute(
-      //   name: RoutePath.changePasswordScreen,
-      //   path: RoutePath.changePasswordScreen.addBasePath,
-      //   pageBuilder: (context, state) {
-      //     return _buildPageWithAnimation(
-      //       child: ChangePasswordScreen(),
-      //       state: state,
-      //     );
-      //   },
-      // ),
+      GoRoute(
+        name: RoutePath.settingScreen,
+        path: RoutePath.settingScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const SettingScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.changePasswordScreen,
+        path: RoutePath.changePasswordScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: ChangePasswordScreen(),
+            state: state,
+          );
+        },
+      ),
 
       //   GoRoute(
       //   name: RoutePath.privacyPolicyScreen,

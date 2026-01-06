@@ -1,13 +1,15 @@
-/*
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:health_tracker_app/core/router/route_path.dart';
+import 'package:health_tracker_app/core/router/routes.dart';
+import 'package:health_tracker_app/features/auth/controller/auth_controller.dart';
+import 'package:health_tracker_app/helper/validator/text_field_validator.dart';
+import 'package:health_tracker_app/share/widgets/button/custom_button.dart';
+import 'package:health_tracker_app/share/widgets/text_field/custom_text_field.dart';
+import 'package:health_tracker_app/utils/app_strings/app_strings.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:percel_delivery_app/features/auth/controller/auth_controller.dart';
-import 'package:percel_delivery_app/helper/validator/text_field_validator.dart';
-import 'package:percel_delivery_app/share/widgets/text_field/custom_text_field.dart';
-import 'package:percel_delivery_app/utils/app_strings/app_strings.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -55,7 +57,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         /// ---------- Old Password Input ----------
                         CustomTextField(
                           title: "Old Password".tr,
-                          hintText: AppStrings.enterYourPassword.tr,
+                          hintText: AppStrings.enterPassword.tr,
                           keyboardType: TextInputType.text,
                           prefixIcon: Icon(Iconsax.lock_1),
                           isPassword: true,
@@ -70,7 +72,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         /// ---------- New Password Input ----------
                         CustomTextField(
                           title: AppStrings.newPassword.tr,
-                          hintText: AppStrings.enterYourNewPassword.tr,
+                          hintText: AppStrings.enterPassword.tr,
                           keyboardType: TextInputType.text,
                           prefixIcon: Icon(Iconsax.lock_1),
                           isPassword: true,
@@ -85,7 +87,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         /// ---------- Confirm Password ----------
                         CustomTextField(
                           title: AppStrings.confirmPassword.tr,
-                          hintText: AppStrings.confirmYourNewPassword.tr,
+                          hintText: AppStrings.enterConfirmPassword.tr,
                           keyboardType: TextInputType.text,
                           prefixIcon: Icon(Iconsax.lock_1),
                           isPassword: true,
@@ -99,12 +101,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   ),
                 ),
               ),
-              */
-/*   CustomButton(
-                text: AppStrings.updatePassword.tr,
-                onTap: () => AppRouter.route.goNamed(RoutePath.navigationPage),
-              ),*//*
 
+              CustomButton(
+                text: "Change Password".tr,
+                onTap: () => AppRouter.route.goNamed(RoutePath.navigationPages),
+              ),
             ],
           ),
         ),
@@ -112,4 +113,3 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     );
   }
 }
-*/

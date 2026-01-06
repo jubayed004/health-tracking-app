@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:health_tracker_app/core/router/route_path.dart';
 import 'package:health_tracker_app/core/router/routes.dart';
 import 'package:health_tracker_app/share/widgets/button/circular_arrow_button.dart';
+import 'package:health_tracker_app/share/widgets/network_image/custom_network_image.dart';
 import 'package:health_tracker_app/utils/color/app_colors.dart';
 import 'package:health_tracker_app/utils/extension/base_extension.dart';
 
@@ -18,7 +20,6 @@ class ProfileScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Column(
               children: [
-                // Header
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24.0,
@@ -31,19 +32,15 @@ class ProfileScreen extends StatelessWidget {
                         child: Text(
                           "Profile",
                           textAlign: TextAlign.center,
-                          style: context.titleLarge.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.blackMainTextColor,
-                          ),
+                          style: context.titleLarge,
                         ),
                       ),
-                      const SizedBox(width: 40), // Balance the back button
+                      const SizedBox(width: 40),
                     ],
                   ),
                 ),
                 const Gap(20),
 
-                // Profile Card
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Container(
@@ -68,19 +65,8 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                               ),
                               child: ClipOval(
-                                child: Image.network(
-                                  'https://i.pravatar.cc/150?img=47',
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Container(
-                                      color: Colors.white,
-                                      child: const Icon(
-                                        Icons.person,
-                                        size: 40,
-                                        color: AppColors.primaryColor,
-                                      ),
-                                    );
-                                  },
+                                child: CustomNetworkImage(
+                                  imageUrl: "https://i.pravatar.cc/150?img=47",
                                 ),
                               ),
                             ),
@@ -126,27 +112,35 @@ class ProfileScreen extends StatelessWidget {
                                   Text(
                                     "irisrodriguez@mail.com",
                                     style: context.bodyMedium.copyWith(
-                                      color: Colors.white.withOpacity(0.9),
+                                      color: Colors.white.withValues(
+                                        alpha: 0.9,
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            // Edit Button
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                "Edit",
-                                style: context.labelLarge.copyWith(
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w600,
+                            GestureDetector(
+                              onTap: () {
+                                AppRouter.route.pushNamed(
+                                  RoutePath.editProfileScreen,
+                                );
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  "Edit",
+                                  style: context.labelLarge.copyWith(
+                                    color: AppColors.primaryColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                             ),
@@ -167,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
                         icon: Icons.settings_outlined,
                         title: "Account Settings",
                         onTap: () {
-                          // Navigate to account settings
+                          AppRouter.route.pushNamed(RoutePath.settingScreen);
                         },
                       ),
                       _buildMenuItem(
@@ -230,7 +224,7 @@ class ProfileScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.03),
+              color: Colors.black.withValues(alpha: 0.03),
               blurRadius: 10,
               offset: const Offset(0, 2),
             ),
