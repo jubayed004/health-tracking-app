@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -205,7 +207,7 @@ class _DateOfBirthScreenState extends State<DateOfBirthScreen> {
                     final month = _months[_selectedMonthIndex.value];
                     final date = _dates[_selectedDateIndex.value];
                     final year = _years[_selectedYearIndex.value];
-                    print("Born: $month $date, $year");
+                    log("Born: $month $date, $year");
                     context.pushNamed(RoutePath.thankYouScreen);
                   },
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:health_tracker_app/core/custom_assets/assets.gen.dart';
 import 'package:health_tracker_app/core/router/route_path.dart';
 import 'package:health_tracker_app/core/router/routes.dart';
@@ -51,7 +52,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: Text(
-                        "Start your 7 days FREE trial to continue.",
+                        "Start your 7 days FREE trial to continue.".tr,
                         textAlign: TextAlign.center,
                         style: context.headlineMedium.copyWith(
                           fontWeight: FontWeight.bold,
@@ -93,7 +94,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                           child: Column(
                             children: [
                               Text(
-                                "Choose your Plan", // TODO: Move to AppStrings
+                                "Choose your Plan".tr,
                                 style: context.titleLarge.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.blackMainTextColor,

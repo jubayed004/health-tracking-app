@@ -9,7 +9,6 @@ import 'package:health_tracker_app/share/widgets/text_field/otp_text_field.dart'
 import 'package:health_tracker_app/utils/app_strings/app_strings.dart';
 import 'package:health_tracker_app/utils/color/app_colors.dart';
 import 'package:health_tracker_app/utils/extension/base_extension.dart';
-import 'package:pinput/pinput.dart';
 
 class ActiveOtpScreen extends StatefulWidget {
   const ActiveOtpScreen({super.key});
