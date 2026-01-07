@@ -62,9 +62,8 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                     ),
                     const Gap(20),
 
-                    // Image
                     SizedBox(
-                      height: 400, // Adjust height as needed
+                      height: 400,
                       child: Assets.images.subscriationImageTwo.image(
                         fit: BoxFit.contain,
                       ),
@@ -72,7 +71,6 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
 
                     const Gap(20),
 
-                    // Plan Selection
                     Opacity(
                       opacity: .9,
                       child: Transform.translate(
@@ -133,7 +131,6 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               ),
             ),
 
-            // Purchase Button
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(
