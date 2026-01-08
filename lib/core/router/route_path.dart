@@ -29,4 +29,5 @@ class RoutePath {
   static const String professionalInfoEditScreen = 'professionalInfoEditScreen';
   static const String navigationPages = 'navigationPages';
   static const String settingScreen = 'settingScreen';
+  static const String contactAndSupportScreen = 'contactAndSupportScreen';
 }
