@@ -13,7 +13,10 @@ import 'package:health_tracker_app/features/auth/verify_otp/verify_otp_screen.da
 import 'package:health_tracker_app/features/nav/navigation_page.dart';
 import 'package:health_tracker_app/features/onboarding/onboarding_screen.dart';
 import 'package:health_tracker_app/features/other/change_password_screen.dart';
+import 'package:health_tracker_app/features/other/contact_and_support.dart';
+import 'package:health_tracker_app/features/other/privacy_policy_screen.dart';
 import 'package:health_tracker_app/features/other/setting_screen.dart';
+import 'package:health_tracker_app/features/other/terms_and_conditions_screen.dart';
 import 'package:health_tracker_app/features/profile/edit_profile_screen.dart';
 import 'package:health_tracker_app/features/splash/splash_screen.dart';
 import 'package:health_tracker_app/utils/extension/base_extension.dart';
@@ -203,27 +206,37 @@ class AppRouter {
           );
         },
       ),
+      GoRoute(
+        name: RoutePath.contactAndSupportScreen,
+        path: RoutePath.contactAndSupportScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const ContactAndSupportScreen(),
+            state: state,
+          );
+        },
+      ),
 
-      //   GoRoute(
-      //   name: RoutePath.privacyPolicyScreen,
-      //   path: RoutePath.privacyPolicyScreen.addBasePath,
-      //   pageBuilder: (context, state) {
-      //     return _buildPageWithAnimation(
-      //       child: PrivacyPolicyScreen(),
-      //       state: state,
-      //     );
-      //   },
-      // ),
-      // GoRoute(
-      //   name: RoutePath.termsAndConditionsScreen,
-      //   path: RoutePath.termsAndConditionsScreen.addBasePath,
-      //   pageBuilder: (context, state) {
-      //     return _buildPageWithAnimation(
-      //       child: TermsAndConditionsScreen(),
-      //       state: state,
-      //     );
-      //   },
-      // ),
+      GoRoute(
+        name: RoutePath.privacyPolicyScreen,
+        path: RoutePath.privacyPolicyScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: PrivacyPolicyScreen(),
+            state: state,
+          );
+        },
+      ),
+      GoRoute(
+        name: RoutePath.termsAndConditionsScreen,
+        path: RoutePath.termsAndConditionsScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: TermsAndConditionsScreen(),
+            state: state,
+          );
+        },
+      ),
 
       // GoRoute(
       //   name: RoutePath.bookingsScreen,

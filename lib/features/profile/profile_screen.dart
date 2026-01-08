@@ -168,21 +168,27 @@ class ProfileScreen extends StatelessWidget {
                         icon: Icons.support_agent_outlined,
                         title: "Contact & Support",
                         onTap: () {
-                          // Navigate to support
+                          AppRouter.route.pushNamed(
+                            RoutePath.contactAndSupportScreen,
+                          );
                         },
                       ),
                       _buildMenuItem(
                         icon: Icons.description_outlined,
                         title: "Terms & Condition",
                         onTap: () {
-                          // Navigate to terms
+                          AppRouter.route.pushNamed(
+                            RoutePath.termsAndConditionsScreen,
+                          );
                         },
                       ),
                       _buildMenuItem(
                         icon: Icons.privacy_tip_outlined,
                         title: "Privacy & Policy",
                         onTap: () {
-                          // Navigate to privacy policy
+                          AppRouter.route.pushNamed(
+                            RoutePath.privacyPolicyScreen,
+                          );
                         },
                       ),
                       const Gap(12),
