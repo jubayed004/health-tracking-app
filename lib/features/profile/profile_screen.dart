@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:health_tracker_app/core/router/route_path.dart';
 import 'package:health_tracker_app/core/router/routes.dart';
-import 'package:health_tracker_app/share/widgets/button/circular_arrow_button.dart';
 import 'package:health_tracker_app/share/widgets/network_image/custom_network_image.dart';
 import 'package:health_tracker_app/utils/color/app_colors.dart';
 import 'package:health_tracker_app/utils/extension/base_extension.dart';
@@ -25,18 +24,10 @@ class ProfileScreen extends StatelessWidget {
                     horizontal: 24.0,
                     vertical: 10,
                   ),
-                  child: Row(
-                    children: [
-                      CircularArrowButton(onTap: () => AppRouter.route.pop()),
-                      Expanded(
-                        child: Text(
-                          "Profile",
-                          textAlign: TextAlign.center,
-                          style: context.titleLarge,
-                        ),
-                      ),
-                      const SizedBox(width: 40),
-                    ],
+                  child: Text(
+                    "Profile",
+                    textAlign: TextAlign.center,
+                    style: context.titleLarge,
                   ),
                 ),
                 const Gap(20),

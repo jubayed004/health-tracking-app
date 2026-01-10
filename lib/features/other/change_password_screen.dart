@@ -6,9 +6,11 @@ import 'package:health_tracker_app/core/router/route_path.dart';
 import 'package:health_tracker_app/core/router/routes.dart';
 import 'package:health_tracker_app/features/auth/controller/auth_controller.dart';
 import 'package:health_tracker_app/helper/validator/text_field_validator.dart';
+import 'package:health_tracker_app/share/widgets/button/circular_arrow_button.dart';
 import 'package:health_tracker_app/share/widgets/button/custom_button.dart';
 import 'package:health_tracker_app/share/widgets/text_field/custom_text_field.dart';
 import 'package:health_tracker_app/utils/app_strings/app_strings.dart';
+import 'package:health_tracker_app/utils/extension/base_extension.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -37,12 +39,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text('Change Password'.tr),
-        centerTitle: true,
-      ),
+
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
@@ -54,6 +51,25 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     key: _formKey,
                     child: Column(
                       children: [
+                        Row(
+                          children: [
+                            CircularArrowButton(
+                              onTap: () => Navigator.pop(context),
+                            ),
+                            Expanded(
+                              child: Text(
+                                'Change Password',
+                                textAlign: TextAlign.center,
+                                style: context.titleLarge.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 48),
+                          ],
+                        ),
+                        const Gap(32),
+
                         /// ---------- Old Password Input ----------
                         CustomTextField(
                           title: "Old Password".tr,
