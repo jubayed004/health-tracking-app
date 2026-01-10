@@ -10,6 +10,7 @@ import 'package:health_tracker_app/features/auth/subscription/subscription_scree
 import 'package:health_tracker_app/features/auth/thank_you/thank_you_screen.dart';
 import 'package:health_tracker_app/features/auth/sign_up/sign_up_screen.dart';
 import 'package:health_tracker_app/features/auth/verify_otp/verify_otp_screen.dart';
+import 'package:health_tracker_app/features/health_tracking/health_tracking_screen.dart';
 import 'package:health_tracker_app/features/nav/navigation_page.dart';
 import 'package:health_tracker_app/features/onboarding/onboarding_screen.dart';
 import 'package:health_tracker_app/features/other/change_password_screen.dart';
@@ -238,6 +239,16 @@ class AppRouter {
         },
       ),
 
+      GoRoute(
+        name: RoutePath.healthTrackingScreen,
+        path: RoutePath.healthTrackingScreen.addBasePath,
+        pageBuilder: (context, state) {
+          return _buildPageWithAnimation(
+            child: const HealthTrackingScreen(),
+            state: state,
+          );
+        },
+      ),
       // GoRoute(
       //   name: RoutePath.bookingsScreen,
       //   path: RoutePath.bookingsScreen.addBasePath,

@@ -30,4 +30,5 @@ class RoutePath {
   static const String navigationPages = 'navigationPages';
   static const String settingScreen = 'settingScreen';
   static const String contactAndSupportScreen = 'contactAndSupportScreen';
+  static const String healthTrackingScreen = 'healthTrackingScreen';
 }

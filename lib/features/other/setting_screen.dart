@@ -34,7 +34,6 @@ class SettingScreen extends StatelessWidget {
                 ],
               ),
               const Gap(32),
-
               _buildSettingItem(
                 context: context,
                 icon: Icons.lock_outline,
